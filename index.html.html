@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<!--
+	Red Rock Homes
+	html5up.net | @ajlkn
+-->
+<html>
+	<head>
+		<title>Red Rock Homes</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Red Rock</strong> Manufactured Homes</a>
+									<ul class="icons">
+										<li><a href="https://www.facebook.com/share/1B2qg2DyAA/?mibextid=wwXIfr" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h1>Red Rock<br />
+											Homes</h1>
+											<p>About Us</p>
+										</header>
+										<p>Looking for an affordable new home? We offer a wide selection of manufactured homes to fit every budget and lifestyle.</p>
+										<ul class="actions">
+											<li><a href="https://www.facebook.com/share/1B2qg2DyAA/?mibextid=wwXIfr" class="button big">Learn More</a></li>
+										</ul>
+									</div>
+									<span class="image object">
+										<img src="C:\Users\isaia\Desktop\project folder\redrockhomes\images\rebel_logo.png" />
+									</span>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Pre-Qualify</h2>
+									</header>
+									<!--prequalification calculator-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amortization Calculator</title>
+<style>
+ body {
+   font-family: Arial, sans-serif;
+   background: #f4f6f8;
+   color: #333;
+   margin: 0;
+   padding: 0;
+ }
+ .container {
+   max-width: 600px;
+   margin: 50px auto;
+   background: #fff;
+   padding: 25px;
+   border-radius: 8px;
+   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+ }
+ h2 {
+   text-align: center;
+   color: #004d80;
+   margin-bottom: 20px;
+ }
+ label {
+   font-weight: bold;
+   margin-top: 10px;
+   display: block;
+ }
+ input {
+   width: 100%;
+   padding: 10px;
+   margin-top: 4px;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+ }
+ button {
+   width: 100%;
+   background-color: #0077cc;
+   color: white;
+   border: none;
+   padding: 12px;
+   border-radius: 6px;
+   margin-top: 20px;
+   font-size: 16px;
+   cursor: pointer;
+ }
+ button:hover {
+   background-color: #005fa3;
+ }
+ table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 25px;
+ }
+ th, td {
+   padding: 8px;
+   border: 1px solid #ccc;
+   text-align: right;
+ }
+ th {
+   background: #0077cc;
+   color: white;
+ }
+ .summary {
+   text-align: center;
+   margin-top: 20px;
+   font-size: 18px;
+   color: #004d80;
+   font-weight: bold;
+ }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Amortization Calculator</h2>
+<form id="amortForm">
+<label for="amount">Loan Amount ($):</label>
+<input type="number" id="amount" required>
+<label for="rate">Interest Rate (% per year):</label>
+<input type="number" id="rate" step="0.01" required>
+<label for="years">Loan Term (years):</label>
+<input type="number" id="years" required>
+<button type="submit">Calculate</button>
+</form>
+<div class="summary" id="summary"></div>
+<table id="amortTable" style="display:none;">
+<thead>
+<tr>
+<th>Month</th>
+<th>Payment</th>
+<th>Principal</th>
+<th>Interest</th>
+<th>Balance</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+<script>
+document.getElementById("amortForm").addEventListener("submit", function(e) {
+ e.preventDefault();
+ const amount = parseFloat(document.getElementById("amount").value);
+ const rate = parseFloat(document.getElementById("rate").value) / 100 / 12;
+ const years = parseFloat(document.getElementById("years").value);
+ const months = years * 12;
+ const monthlyPayment = (amount * rate) / (1 - Math.pow(1 + rate, -months));
+ // Display summary
+ const summary = `
+   Monthly Payment: ${monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}<br>
+   Total Payments: ${(monthlyPayment * months).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}<br>
+   Total Interest: ${((monthlyPayment * months) - amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+ `;
+ document.getElementById("summary").innerHTML = summary;
+ // Generate amortization schedule
+ const table = document.getElementById("amortTable");
+ const tbody = table.querySelector("tbody");
+ tbody.innerHTML = "";
+ let balance = amount;
+ for (let i = 1; i <= months; i++) {
+   const interest = balance * rate;
+   const principal = monthlyPayment - interest;
+   balance -= principal;
+   const row = document.createElement("tr");
+   row.innerHTML = `
+<td>${i}</td>
+<td>${monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+<td>${principal.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+<td>${interest.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+<td>${Math.max(balance, 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+   `;
+   tbody.appendChild(row);
+ }
+ table.style.display = "table";
+});
+</script>
+</body>
+</html>
+						<!--prequalification calculator end-->
+
+								</section>
+
+							<!-- facebool section -->
+								<section>
+									<header class="major">
+										<h2>Homes</h2>
+									</header>
+									<div class="posts">
+										<article>
+											<a href="#" class="image"><img src="C:\Users\isaia\Desktop\project folder\redrockhomes\images\pic2.jpg" alt="" /></a>
+											<h3>Explore our available mobile homes and find the one that’s right for you.</h3>
+											<p>Interested in one of our mobile homes?
+Click the button below for our full listing or contact us directly. Our team will get back to you with details, financing options, and next steps.
+We’re here to help you find the perfect home that fits your budget and lifestyle.</p>
+											<ul class="actions">
+												<li><a href="https://www.facebook.com/share/1B2qg2DyAA/?mibextid=wwXIfr" class="button">Available Homes</a></li>
+											</ul>
+										</article>
+
+
+										</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="elements.html">Services</a></li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Click here to see what's available!</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://www.facebook.com/share/1B2qg2DyAA/?mibextid=wwXIfr" class="image"><img src="C:\Users\isaia\Desktop\project folder\redrockhomes\images\pic1.jpg" alt="" /></a>
+											<p></p>
+										</article>
+										<article>
+											<a href="https://www.facebook.com/share/1B2qg2DyAA/?mibextid=wwXIfr" class="image"><img src="C:\Users\isaia\Desktop\project folder\redrockhomes\images\pic2.jpg" alt="" /></a>
+											<p></p>
+										</article>
+										<article>
+											<a href="https://www.facebook.com/share/1B2qg2DyAA/?mibextid=wwXIfr" class="image"><img src="C:\Users\isaia\Desktop\project folder\redrockhomes\images\mobile home.avif" alt="" /></a>
+											<p></p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="#" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>Need more information about our mobile homes, financing, or availability?
+Contact us today. Our friendly staff is ready to answer your questions and guide you through the next steps.</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">American.s.development@gmail.com
+ </a></li>
+										<li class="icon solid fa-phone">(915) 443-0461</li>
+										<li class="icon solid fa-home">170 Vin Marbella, El Paso, Texas, 79912</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
